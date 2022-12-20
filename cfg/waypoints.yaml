@@ -1,0 +1,6 @@
+waypoints:
+  - point:
+      frame: '' # leave empty for odom frame as reference. 'utm' for UTM coordinates
+      x: 10
+      y: 0
+      th: 0.0

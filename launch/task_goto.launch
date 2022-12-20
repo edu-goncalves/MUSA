@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<launch>
+        <!--- Run template_pkg node -->
+    <node pkg="task_goto_multiple" type="task_goto_multiple_node" name="task_goto" output="screen" respawn="false">
+		<param name="EPS_yaw" type="double" value="0.1" />
+		<param name="EPS_x" type="double" value="1.0" />
+		<param name="EPS_y" type="double" value="1.0" />
+		<param name="W_MAX" type="double" value="0.35" />
+		<param name="W_MIN" type="double" value="0.2" />
+		<param name="V_MAX" type="double" value="0.4" />
+		<param name="V_MIN" type="double" value="0.2" />
+		<param name="thrs_time_start_move" type="double" value="750" /> <!--Each cycle lasts for 4ms; 500 ==> wait for 2s-->
+		<param name="D_Finish" type="double" value="2.5" /> 
+		<param name="cmd_vel_topic" type="str" value="/cmd_vel" /> <!--topic where to publish velocity commands -->
+		<param name="odom_topic" type="str" value="/odometry/filtered" /> <!--topic where odometry is published -->
+		<param name="W_active" type="double" value="0.0" />
+		<param name="Move_End_Time" type="int" value="60" /> <!-- Seconds -->
+    </node>
+</launch>

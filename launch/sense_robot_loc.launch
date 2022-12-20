@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="cfg_file_robot" default="$(find task_goto_multiple)/cfg/sense_localization_goto.yaml" />
+    <rosparam command="load" file="$(arg cfg_file_robot)" />
+
+
+    <node pkg="robot_localization" type="ekf_localization_node" name="ekf_gps" clear_params="true">  
+    	<param name="imu0" value="/imu/data"/>
+    	<!--  Placeholder for output topic remapping  -->
+    	<remap from="odometry/filtered" to="odometry/filtered"/>
+    </node>
+
+  <node pkg="robot_localization" type="navsat_transform_node" name="navsat" respawn="true" output="screen">
+    <!-- Subcribed topics-->
+    <remap from="gps/fix" to="/piksi/navsatfix_best_fix"/>
+    <remap from="imu/data" to="/imu/data"/>
+    <remap from="odometry/filtered" to="odometry/filtered"/>
+
+    <!-- Published topics-->
+    <remap from="odometry/gps" to="odometry/gps"/>
+  </node>
+</launch>
